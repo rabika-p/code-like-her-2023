@@ -6,10 +6,9 @@ document.getElementById('addMovieForm').addEventListener('submit', (event) => {
     const title = document.getElementById('title').value;
     const rating = document.getElementById('rating').value;
     const genre = document.getElementById('genre').value;
-    const imageUrl = document.getElementById('imageUrl').value;
 
     //input validation
-    if (!title || !genre || !imageUrl) {
+    if (!title || !genre) {
         alert('Please fill in all fields.');
         return;
     }
@@ -26,7 +25,7 @@ document.getElementById('addMovieForm').addEventListener('submit', (event) => {
 
     //reset form and redirect
     document.getElementById('addMovieForm').reset();
-    window.location.href = "/index.html";
+    window.location.href = "index.html";
 });
 
 
