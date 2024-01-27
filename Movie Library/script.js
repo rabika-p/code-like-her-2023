@@ -38,4 +38,24 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+//remove movie from localStorage array on delete button press
+const deleteMovie = (title) => {
+  let movies = JSON.parse(localStorage.getItem("movies")) || [];
 
+  const index = movies.findIndex((movie) => movie.title === title);
+
+  if (index !== -1) {
+    movies.splice(index, 1);
+
+    localStorage.setItem("movies", JSON.stringify(movies));
+
+    const movieGridContainer = document.getElementById("movieGrid");
+    const movieElements = document.getElementsByClassName("movie");
+
+    if (index >= 0 && index < movieElements.length) {
+      movieGridContainer.removeChild(movieElements[index]);
+    }
+
+    location.reload();
+  }
+};
