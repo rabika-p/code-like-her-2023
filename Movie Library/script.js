@@ -1,4 +1,4 @@
-//display movies from localStorage on DOMContentLoaded
+// Display movies from localStorage on DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
   const movies = JSON.parse(localStorage.getItem("movies")) || [];
 
@@ -6,12 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const messageContainer = document.getElementById("messageContainer");
   const addMovieButton = document.getElementById("addMovie");
 
-  //empty array check
+  // Empty array check
   if (movies.length === 0) {
     messageContainer.textContent = "No movies in your library. Add some!";
   }
 
-  //html elements to display movie data
+  // Html elements to display movie data
   const generateMovieHTML = (movie) => {
     return `
     <img src="images/${movie.imageUrl}" alt="${movie.title}" onerror="this.src='images/default.png';">
@@ -20,11 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
           <p class = "genre">${movie.genre}</p>
           <p class = "rating">Rating: ${movie.rating}/10</p>
         </div>
-        <button class="deleteMovie" onclick="deleteMovie('${movie.title}')">Delete</button>
+        <div class = "buttonContainer">
+          <button class="editMovie" onclick="editMovie('${movie.index}')">Edit</button>
+          <button class="deleteMovie" onclick="deleteMovie('${movie.index}')">Delete</button>
+        </div>
       `;
   };
 
-  //append HTML elements for each movie, wrap them in divs
+  // Append HTML elements for each movie, wrap them in divs
   movies.forEach((movie) => {
     const movieElement = document.createElement("div");
     movieElement.classList.add("movie");
@@ -32,30 +35,27 @@ document.addEventListener("DOMContentLoaded", () => {
     movieGridContainer.appendChild(movieElement);
   });
 
-  //redirect on add button click
+  // Redirect on add button click
   addMovieButton.addEventListener("click", () => {
     window.location.href = "add-movie.html";
   });
 });
 
-//remove movie from localStorage array on delete button press
-const deleteMovie = (title) => {
+// Remove movie from localStorage array on delete button press
+const deleteMovie = (index) => {
   let movies = JSON.parse(localStorage.getItem("movies")) || [];
 
-  const index = movies.findIndex((movie) => movie.title === title);
+  const movieIndex = movies.findIndex((movie) => movie.index === +index);
 
-  if (index !== -1) {
-    movies.splice(index, 1);
-
+  // Remove movie if found
+  if (movieIndex !== -1) {
+    movies.splice(movieIndex, 1);
     localStorage.setItem("movies", JSON.stringify(movies));
-
-    const movieGridContainer = document.getElementById("movieGrid");
-    const movieElements = document.getElementsByClassName("movie");
-
-    if (index >= 0 && index < movieElements.length) {
-      movieGridContainer.removeChild(movieElements[index]);
-    }
-
     location.reload();
   }
+};
+
+const editMovie = (index) => {
+  // Redirect with movieId parameter in url
+  window.location.href = `add-movie.html?movieId=${index}`;
 };
