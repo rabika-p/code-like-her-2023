@@ -1,0 +1,3 @@
+// Export default exports from files and specify names
+export { default as ProductList } from "./ProductList";
+export {default as ProductForm} from "./ProductForm";
