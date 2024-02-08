@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "../ContactForm.css";
 
@@ -7,8 +7,42 @@ import { IoCloseOutline } from "react-icons/io5";
 
 import { Link } from "react-router-dom";
 
+const ContactForm = ({ addContact }) => {
+  const [contactData, setContactData] = useState({
+    name: "",
+    phoneNumber: "",
+    address: "",
+    email: "",
+    type: "",
+    category: "",
+    profileImage: "",
+  });
 
-const ContactForm = () => {
+  // function to handle input changes
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setContactData((prevData) => ({
+      ...prevData,
+      //dynamic key to get name attribute of inputs
+      [name]: value,
+    }));
+  };
+
+  // function to handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addContact(contactData);
+    setContactData({
+      name: "",
+      phoneNumber: "",
+      address: "",
+      email: "",
+      type: "",
+      category: "",
+      profileImage: "",
+    });
+  };
+
   return (
     <div className="main">
       <div id="formContainer">
@@ -23,53 +57,103 @@ const ContactForm = () => {
           <p id="formInfo">Enter Contact Information</p>
         </div>
 
-        <form id="addContactForm">
+        <form id="addContactForm" onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="name">Name:</label>
-            <input type="text" id="name" name="name" required />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={contactData.name}
+              onChange={handleInput}
+              required
+            />
           </div>
 
-          <div className="inline-group">
+          <div className="inline-form-group">
             <div className="form-group">
               <label htmlFor="phoneNumber">Phone Number:</label>
-              <input type="tel" id="phoneNumber" name="phoneNumber" required />
+              <input
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                value={contactData.phoneNumber}
+                onChange={handleInput}
+                required
+              />
             </div>
 
             <div className="form-group">
               <label htmlFor="address">Address:</label>
-              <input type="text" id="address" name="address" required />
+              <input
+                type="text"
+                id="address"
+                name="address"
+                value={contactData.address}
+                onChange={handleInput}
+                required
+              />
             </div>
           </div>
 
           <div className="form-group">
             <label htmlFor="email">Email:</label>
-            <input type="email" id="email" name="email" required />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={contactData.email}
+              onChange={handleInput}
+              required
+            />
           </div>
 
-          <div className="inline-group">
+          <div className="inline-form-group">
             <div className="form-group">
               <label htmlFor="type">Type:</label>
-              <select id="type" name="type">
+              <select
+                id="type"
+                name="type"
+                value={contactData.type}
+                onChange={handleInput}
+              >
                 <option value="" disabled selected>
                   Select a type
                 </option>
-                <option value="home">Home</option>
-                <option value="work">Work</option>
-                <option value="mobile">Mobile</option>
+                <option value="Home">Home</option>
+                <option value="Work">Work</option>
+                <option value="Mobile">Mobile</option>
               </select>
             </div>
 
             <div className="form-group">
               <label htmlFor="category">Category:</label>
-              <select id="category" name="category">
+              <select
+                id="category"
+                name="category"
+                value={contactData.category}
+                onChange={handleInput}
+              >
                 <option value="" disabled selected>
                   Select a category
                 </option>
-                <option value="friend">Friend</option>
-                <option value="family">Family</option>
-                <option value="colleague">Colleague</option>
+                <option value="Friend">Friend</option>
+                <option value="Family">Family</option>
+                <option value="Colleague">Colleague</option>
               </select>
             </div>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="image">Image URL:</label>
+            <input
+              type="text"
+              id="profileImage"
+              name="profileImage"
+              value={contactData.profileImage}
+              onChange={handleInput}
+              required
+            />
           </div>
 
           <button id="submitBtn" type="submit">
