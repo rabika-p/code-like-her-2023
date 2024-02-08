@@ -29,7 +29,7 @@ a{
 }
 
 .add-contact-btn {
-  background-color: #15b776;
+  background-color: #5dbbb5;
   color: #ffffff;
   height: 45px;
   width: 115px;
@@ -95,12 +95,21 @@ a{
 }
 
 .edit-btn {
-  background-color: #65addd;
+  background-color: #14afd6;
+}
+
+.edit-btn:hover{
+ background-color: #0796b9;
 }
 
 .delete-btn {
-  background-color: #e44d42;
+  background-color: #d45955;
 }
+
+.delete-btn:hover {
+  background-color: #c95835;
+}
+
 
 .contact-image {
   width: 100px;

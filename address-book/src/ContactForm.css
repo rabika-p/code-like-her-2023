@@ -23,7 +23,7 @@
 #addContactForm {
   display: flex;
   flex-direction: column;
-  height: 58vh;
+  height: 70vh;
   justify-content: space-between;
 }
 
@@ -45,11 +45,11 @@
 }
 
 #formInfo {
-  margin: 2% 0 4% 0;
+  margin: 1% 0 2% 0;
   font-size: 1em;
 }
 
-.inline-group {
+.inline-form-group {
   display: flex;
   align-items: center;
 }
@@ -86,7 +86,7 @@ select {
 }
 
 #submitBtn {
-  background-color: #17a19a;
+  background-color: #10a39c;
   color: #ffffff;
   padding: 12px;
   border: none;
@@ -94,9 +94,9 @@ select {
   cursor: pointer;
   width: 25%;
   display: block;
-  margin: 5% auto;
+  margin: 3% auto;
 }
 
 #submitBtn:hover {
-  background-color: #076c67;
+  background-color: #05817b;
 }
