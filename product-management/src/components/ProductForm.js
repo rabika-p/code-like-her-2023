@@ -1,10 +1,15 @@
+import { useState, useContext } from "react";
+
 import { Link } from "react-router-dom";
-import { useState } from "react";
+
+import { ProductContext } from "../contexts/ProductContext";
 
 import { TiShoppingCart } from "react-icons/ti";
 import { IoCloseOutline } from "react-icons/io5";
 
-const ProductForm = ({ addProduct }) => {
+const ProductForm = () => {
+  const { products, addProduct } = useContext(ProductContext);
+
   const [productData, setProductData] = useState({
     title: "",
     price: "",
@@ -24,8 +29,16 @@ const ProductForm = ({ addProduct }) => {
   // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(productData);
-    addProduct(productData);
+    // Retreive id of last product and increase by 1 if products array isn't empty, else new id = 1
+    const newId =
+      products.length > 0 ? products[products.length - 1].id + 1 : 1;
+    const newProduct = {
+      id: newId,
+      title: productData.title,
+      price: productData.price,
+      thumbnail: productData.thumbnail,
+    };
+    addProduct(newProduct);
     alert("Product added successfully");
     setProductData({
       title: "",
