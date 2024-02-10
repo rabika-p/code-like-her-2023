@@ -32,6 +32,13 @@ const ProductList = () => {
     }
   }, [memoProducts.length, setProducts]);
 
+  const handleDelete = (productId) => {
+    const updatedProducts = products.filter(
+      (product) => product.id !== productId
+    );
+    setProducts(updatedProducts);
+  };
+
   return (
     <>
       {loading ? (
@@ -62,7 +69,10 @@ const ProductList = () => {
                   <p className="text-xl text-blue-500 font-medium">
                     ${product.price}
                   </p>
-                  <button className="bg-[#e23860] hover:bg-red-700 cursor-pointer text-white py-2 px-3 rounded">
+                  <button
+                    className="bg-[#e23860] hover:bg-red-700 cursor-pointer text-white py-2 px-3 rounded"
+                    onClick={() => handleDelete(product.id)}
+                  >
                     Delete
                   </button>
                 </div>
