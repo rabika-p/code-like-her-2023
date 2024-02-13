@@ -1,14 +1,14 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 
 import { Link } from "react-router-dom";
 
-import { ProductContext } from "../contexts/ProductContext";
+import { useProductContext } from "../contexts/ProductContext";
 
 import { TiShoppingCart } from "react-icons/ti";
 import { IoCloseOutline } from "react-icons/io5";
 
 const ProductForm = () => {
-  const { products, addProduct } = useContext(ProductContext);
+  const { products, addProduct } = useProductContext();
 
   const [productData, setProductData] = useState({
     title: "",
