@@ -3,7 +3,7 @@
 ## Installation
 1. Clone the repository:  
    `git clone https://github.com/rabika-p/code-like-her-2023.git`  
-   `cd recipe-finder`
+   `cd code-like-her-2023/recipe-finder`
 
 2. Install the dependencies:  
     `npm install`  
