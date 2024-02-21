@@ -14,7 +14,7 @@ To start the app in development mode, run:
 
 ## Project Screenshots
 **All recipes**
-![View all](https://github.com/rabika-p/code-like-her-2023/assets/60596856/3e092517-fd94-4700-9e74-93e223ffbbc0)  
+![View all](https://github.com/rabika-p/code-like-her-2023/assets/60596856/54aee563-4ba2-475f-8c9c-36c07bc66b55)
   
 **Individual View**
 ![View individual](https://github.com/rabika-p/code-like-her-2023/assets/60596856/edb56dad-cbd3-4654-9219-f9ad6d1c6ca8)
