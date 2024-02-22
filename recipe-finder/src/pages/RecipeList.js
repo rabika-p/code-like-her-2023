@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import api, { endpoints } from "../utils/axios";
+import useDebounce from "../hooks/useDebounce";
 
 import SearchBar from "../components/SearchBar";
 import RecipeCard from "../components/RecipeCard";
@@ -13,10 +14,11 @@ const RecipeList = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const debouncedSearchQuery = useDebounce(searchQuery);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
   useEffect(() => {
-    const params = searchQuery ? { s: searchQuery } : {};
+    const params = debouncedSearchQuery ? { s: debouncedSearchQuery } : {};
     api
       .get(endpoints.list, { params })
       .then((res) => {
@@ -31,7 +33,7 @@ const RecipeList = () => {
         console.error(error);
         setLoading(false);
       });
-  }, [searchQuery]);
+  }, [debouncedSearchQuery]);
 
   const handleSearch = (value) => {
     setSearchQuery(value);
